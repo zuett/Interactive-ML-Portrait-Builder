@@ -4,6 +4,8 @@ An interactive creative coding system built with **p5.js** and **ml5.js** that t
 
 This project is not a single artwork, but a modular system where multiple machine learning models act as visual layers you can combine, toggle, and export.
 
+P%JS link: https://editor.p5js.org/zuett/full/JprT6Q4Ms
+
 ---
 
 ## Live Features
