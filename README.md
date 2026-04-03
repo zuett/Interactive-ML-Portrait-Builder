@@ -172,12 +172,6 @@ You are not using the system — you are composing with it.
 
 ---
 
-## License
-
-MIT License (recommended to add)
-
----
-
 ## Future Improvements
 
 * Performance optimization
