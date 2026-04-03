@@ -1,128 +1,190 @@
 # Interactive ML Portrait Builder
 
-This project is an interactive creative coding tool built with p5.js and ml5.js. It uses your webcam and real-time machine learning models to generate layered visual portraits that respond to your face, body, and hands.
+An interactive creative coding system built with **p5.js** and **ml5.js** that transforms your webcam into a real-time generative portrait engine.
 
-Instead of a single fixed output, this tool lets you experiment by turning different visual systems on and off, combining them in different ways to create unique compositions.
-
-
-## What this project does
-
-The sketch captures live video from your webcam and applies multiple computer vision models:
-
-- Face Mesh → detects facial landmarks and draws points
-- Body Pose → detects body joints and draws a skeleton
-- Hand Pose → tracks hand keypoints
-- Body Segmentation → separates your body from the background
-- Face Texture → maps an image onto your face using a mesh
-
-Each of these can be toggled on or off using the interface.
-
-
-## How to use the tool
-
-1. Open the sketch in a browser (or the p5.js editor).
-2. Allow webcam access when prompted.
-3. Use the toggle switches on the left to activate different features.
-4. Move your face, hands, or body and observe how the visuals respond in real time.
-5. Combine multiple features to create layered effects.
+This project is not a single artwork, but a modular system where multiple machine learning models act as visual layers you can combine, toggle, and export.
 
 ---
 
-## Exporting your own project
+## Live Features
 
-The tool allows you to export a custom version of the sketch based on the features you selected.
+* Face Mesh → facial landmark visualization
+* Body Pose → skeletal tracking
+* Hand Pose → hand keypoint tracking
+* Body Segmentation → background separation
+* Face Texture Mapping → dynamic image projection onto face
 
-### Steps:
-1. Turn on the features you want using the switches.
-2. Click **"Export ZIP Project"**.
-3. A ZIP file will download to your computer.
-
----
-
-## What’s inside the exported ZIP
-
-Depending on your selections, the ZIP will include:
-
-- `index.html` → the main webpage
-- `sketch.js` → your custom generated code
-- `triangles.js` → required for face texture mapping (only included if needed)
-- `clouds.png` → the texture image (only included if needed)
+Each feature can be turned on/off to create unique visual compositions.
 
 ---
 
-## Running the exported project
+## How It Works
 
-To use your exported project:
+The system uses real-time webcam input and runs multiple ML models in parallel.
 
-### Option 1 (recommended)
-- Upload the files into a new project on the p5.js editor
+From your code:
 
-### Option 2
-- Unzip the folder
-- Open `index.html` in a browser
 
-Make sure all files stay in the same folder.
 
----
+Key architecture:
 
-## Important notes
-
-- Face Texture requires Face Mesh internally, so it will always include face tracking even if the dots are not drawn.
-- Webcam access must be enabled for the sketch to work.
-- Performance may vary depending on your device.
+* `preload()` → loads ML models and assets
+* `setup()` → initializes webcam + UI + detection
+* `draw()` → renders layered outputs dynamically
+* Toggle system → controls visual layers
+* Export system → generates custom projects
 
 ---
 
-## Project structure
+## Getting Started
 
--project/
--index.html
--sketch.js
--triangles.js (optional)
--clouds.png (optional)
+### Option 1: Run locally
 
+1. Clone the repo:
+
+```bash
+git clone https://github.com/zuett/interactive-ml-portrait-builder.git
+```
+
+2. Open `index.html` in browser
+3. Allow webcam access
+
+---
+
+### Option 2: Use p5.js editor
+
+1. Go to https://editor.p5js.org
+2. Create new sketch
+3. Upload all files
+4. Run
+
+---
+
+## Controls
+
+| Feature      | Description            |
+| ------------ | ---------------------- |
+| Face Mesh    | Shows facial landmarks |
+| Body Pose    | Displays body skeleton |
+| Hand Pose    | Tracks hand points     |
+| Segmentation | Isolates body          |
+| Face Texture | Maps image to face     |
+
+---
+
+## Export System
+
+This is one of the most unique parts of your project.
+
+You dynamically generate a **custom project** based on selected features.
+
+### Workflow:
+
+1. Enable features
+2. Click **Export ZIP Project**
+3. Download customized version
+
+### Internally:
+
+* `generateExportSketchJS()` builds new code
+* `resolveFeatureDependencies()` ensures correct model usage
+* Assets included only when required
+
+This makes your tool both:
+
+* a creative system
+* a code generator
+
+---
+
+## Project Structure
+
+```
+project/
+│── index.html
+│── sketch.js
+│── triangles.js (optional)
+│── clouds.png (optional)
+```
+
+---
+
+## Key Technical Highlights
+
+### Real-time ML pipeline
+
+Multiple models run simultaneously:
+
+* `ml5.faceMesh()`
+* `ml5.bodyPose()`
+* `ml5.handPose()`
+* `ml5.bodySegmentation()`
+
+### Layered rendering system
+
+The `draw()` loop stacks outputs:
+
+* video → segmentation → pose → face → texture
+
+### Procedural export system
+
+Generates minimal code based on selected features.
 
 ---
 
 ## Concept
 
-This project is designed as a creative system rather than a single artwork.
+Each ML model acts as a layer:
 
-Each model acts like a visual layer:
-- Face → identity
-- Body → structure
-- Hands → interaction
-- Segmentation → abstraction
-- Texture → transformation
+* Face → identity
+* Body → structure
+* Hands → interaction
+* Segmentation → abstraction
+* Texture → transformation
 
-By combining them, you are building your own generative portrait system.
+You are not using the system — you are composing with it.
 
 ---
 
-## Built with
+## Built With
 
-- p5.js
-- ml5.js (handPose, bodyPose, faceMesh, BodyPix)
+* p5.js
+* ml5.js
+* MediaPipe (via ml5)
 
 ---
 
 ## Credits
 
-- Pierre Mikhiel & Jack B.Du
-- Face mesh triangulation data adapted from MediaPipe (Google)
-- ml5.js community examples
-
-
----
-
-## Ideas to explore
-
-- Try using different images instead of `clouds.png`
-- Use only one model at a time for minimal compositions
-- Combine segmentation + texture for abstract silhouettes
-- Record your screen to capture dynamic outputs
+* Pierre Mikhiel
+* Jack B. Du
+* ml5.js community
+* MediaPipe triangulation data
 
 ---
 
-Enjoy experimenting!!
+## Ideas to Explore
 
+* Replace `clouds.png` with your own textures
+* Build minimal compositions with one model
+* Combine segmentation + texture for abstract visuals
+* Record generative outputs
+
+---
+
+## License
+
+MIT License (recommended to add)
+
+---
+
+## Future Improvements
+
+* Performance optimization
+* UI refinement
+* Model selection presets
+* Recording/exporting animations
+
+---
+
+Enjoy experimenting.
