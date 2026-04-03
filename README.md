@@ -171,6 +171,15 @@ You are not using the system — you are composing with it.
 * Record generative outputs
 
 ---
+## Developer Tip
+
+You can use AI-assisted tools (e.g., ChatGPT) to:
+- understand specific functions
+- debug issues
+- explore modifications to the system
+
+This can be especially helpful when working with real-time ML pipelines or WebGL rendering.
+---
 
 ## Future Improvements
 
